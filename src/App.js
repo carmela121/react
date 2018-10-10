@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+
 
 
 class App extends Component {
   state = {
-    cards:[
-      { name: "Yehuda Katz",
-        company: "Tilde, Inc.",
-        avatar_url: "https://avatars0.githubusercontent.com/u/4?v=4"
-      },
-      { name: "Chris Wanstrath",
-        company: "@github",
-        avatar_url: "https://avatars0.githubusercontent.com/u/2?v=4"
-      },
-      { name: "Evan Phoenix",
-        company: "@hashicorp",
-        avatar_url: "https://avatars0.githubusercontent.com/u/7?v=4"
-      },
-      { name: "Tom ten Thij",
-        company: "Freelance",
-        avatar_url: "https://avatars2.githubusercontent.com/u/31?v=4"
-      }
-    ]
+    cards:[]
   };
+  addNewCard = (cardInfo) => {
+    this.setState(prevState => ({
+      cards: prevState.cards.concat(cardInfo)
+    }))
+  }
   render() {
     return (
       <div className="App">
@@ -33,7 +23,7 @@ class App extends Component {
 
         </header>
         <div className="data-block">
-          <Form/>
+          <Form onSubmit={this.addNewCard} />
           <CardList cards={this.state.cards}/>
         </div>
 
@@ -63,7 +53,7 @@ const Card = (props) => {
 const CardList = (props) => {
 	return (
   	<div>
-  	  {props.cards.map(card => <Card {...card}/>)}
+  	  {props.cards.map(card => <Card key={card.id} {...card}/>)}
   	</div>
   );
 };
@@ -73,9 +63,11 @@ class Form extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state.userName)
-    axios.get('https://api.github.com/users/${this.state.userName}')
+    //axios is a method to access api data. Install with npm as a package and import it at the top of your files as above
+    axios.get('https://api.github.com/users/'+ this.state.userName)
     .then(resp => {
-      console.log(resp)
+      this.props.onSubmit(resp.data);
+      this.setState({ userName: ''})
     });
   }
 	render() {
