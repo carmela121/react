@@ -29,3 +29,20 @@
   text-decoration: none;
   color: aliceblue;
 }
+
+.main-container {
+  margin: 1em;
+  
+}
+
+.details {
+	display: inline-block;
+  margin-left: 10px;
+}
+.info {
+	font-weight: bold;
+  font-size: 18px;
+}
+.profile-picture {
+	width: 100px;
+}
