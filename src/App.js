@@ -28,7 +28,7 @@ class App extends Component {
         </div>
 
         <p className="App-intro">
-      Lorem ipsu m blal rlaknr lankkr lalnr
+      lorem ipsum
         </p>
         <img className="living-room" src="./living-room.jpeg"></img>
       </div>

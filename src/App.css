@@ -47,3 +47,23 @@
 .profile-picture {
 	width: 100px;
 }
+
+.data-block {
+  margin-top: 40px; 
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #008CBA;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  
+}
+
+input {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 4px;
+}
